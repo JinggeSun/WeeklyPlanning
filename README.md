@@ -3,12 +3,12 @@
 
 ### 第一周 2019-09-23 -- 2019-09-29
 1. spring boot 捕获全局异常
-2. spring boot 缓存 ehcache
-3. spring boot 缓存 redis
+2. spring boot 缓存 cache
+3. spring boot druid 数据库连接池
 4. restful api
 5. token 机制防止重复提交
-6. 设计模式：责任链模式
-7. 数据分析：世界杯数据分析
+6. 缓存 spring cache 复习
+7. 设计模式：责任链模式
 #### 捕获全局异常
 ##### 思路
 1. 新建一个捕获全局的类，每个方法实现捕获异常的逻辑。
@@ -43,3 +43,34 @@
 ##### 其他
 1. 枚举
 2. 继承 super() 指向自己超（父）类对象的一个指针，而这个超类指的是离自己最近的一个父类
+
+#### spring boot 缓存 cache
+本来打算使用redis和encache分别作为1天，但是看了一篇公众号的文章，很受启发。所以作为一篇文章。
+##### 原本思路
+1. 使用jedis作为redis客户端，编写config
+2. 编写redisUtil工具类，实现基本的查询，验证，增加等功能
+3. 在serive中使用redisUtil
+4. 原则：
+  1. 查询：先查redis，再数据库
+  2. 增，删，改，先数据库，再redis
+##### encache
+
+##### 练习
+1. redisCache 使用原本的思路. 缓存基本靠redis的工具类
+2. redisCache 配置，使用jedis，但是jedis只是作为连接使用，操作是redistemplate
+3. cachemanager 使用cachemanager管理
+4. 使用encache作为缓存客户端
+
+##### 学习高级缓存客户端
+采用redis作为缓存客户端，之前打算使用jedis作为连接客户端，这里使用lettuce作为客户端。
+1. 可以自定义缓存客户端
+2. 配置key和value
+3. 使用时无差别
+##### 其他
+1. 阻塞客户端jedis
+2. @Primary注解
+3. lettuce
+4. 下载redis，make，src/redis-server
+5. 	yml 文件中自定义参数解析对象 @ConfigurationProperties(prefix="spring.redis.pool")
+6. 工厂模式
+7. cachemanager
