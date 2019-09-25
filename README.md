@@ -4,7 +4,7 @@
 ### 第一周 2019-09-23 -- 2019-09-29
 1. spring boot 捕获全局异常
 2. spring boot 缓存 cache
-3. spring boot druid 数据库连接池
+3. spring boot druid 数据库连接池 入门
 4. restful api
 5. token 机制防止重复提交
 6. 缓存 spring cache 复习
@@ -74,3 +74,29 @@
 5. 	yml 文件中自定义参数解析对象 @ConfigurationProperties(prefix="spring.redis.pool")
 6. 工厂模式
 7. cachemanager
+#### druid连接池
+Druid是Java语言中最好的数据库连接池。Druid能够提供强大的监控和扩展功能。其他数据库连接池还有C3P0。
+##### 传统思路
+1. 引入sql连接
+2. 配置数据库4项，驱动，连接地址，用户名，密码
+3. 使用mybatis 进行 curd
+##### durid
+1. [druid-spring-boot-starter](https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter) 配合Springboot的配置文件，可以直接使用
+2. [druid](https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98) 配置好配置文件后，需要在config中设置
+3. 使用druid-spring-boot-start 开发，参照官网。
+4. 多数据源  未实现，没看懂如何调用。
+5. 监控
+6. demo，官网的例子很好，可以参考。
+##### 思路
+1. 引入pom druid-spring-boot-starter，数据库驱动
+2. 配置数据库4项
+3. 其他配置项
+4. 编写servert，并在启动类扫描，可以进入druid的web监控页面
+5. 多数据源
+6. Spring Boot 2.X 版本不再支持配置继承，多数据源的话每个数据源的所有配置都需要单独配置，否则配置不会生效
+##### 其他
+1. apache druid
+##### 未完成
+1. druid 多数据源
+2. 监控web端
+3. 配置参数的意义
