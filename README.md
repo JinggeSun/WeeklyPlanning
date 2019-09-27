@@ -9,6 +9,8 @@
 5. token 机制防止重复提交
 6. 缓存 spring cache 复习
 7. 设计模式：责任链模式
+### 第二周
+1. Spring 框架中的设计模式（一）
 #### 捕获全局异常
 ##### 思路
 1. 新建一个捕获全局的类，每个方法实现捕获异常的逻辑。
@@ -100,3 +102,72 @@ Druid是Java语言中最好的数据库连接池。Druid能够提供强大的监
 1. druid 多数据源
 2. 监控web端
 3. 配置参数的意义
+#### Representational State Transfer
+RESTful架构应该遵循统一接口原则，统一接口包含了一组受限的预定义的操作，不论什么样的资源，都是通过使用相同的接口进行资源的访问。接口应该使用标准的HTTP方法如GET，PUT和POST，并遵循这些方法的语义。
+##### RESTful API 注意
+当你理解后，要按照这思路去建立以后的项目，而不是随意定义接口。这样有助于提升。
+##### GET
+1. 安全且幂等
+2. 获取表示
+3. 变更时获取表示（缓存）
+##### POST
+1. 不安全且不幂等
+2. 使用服务端管理的（自动产生）的实例号创建资源
+3. 创建子资源
+4. 部分更新资源
+5. 如果没有被修改，则不过更新资源（乐观锁）
+##### PUT
+1. 不安全但幂等
+2. 用客户端管理的实例号创建一个资源
+3. 通过替换的方式更新资源
+4. 如果未被修改，则更新资源（乐观锁)
+##### DELETE
+1. 不安全但幂等
+2. 删除资源
+##### uri规范
+1. 使用名词。如 managed-devices/{device-id}
+2. http method对应不同的请求动作 GET：查询操作，POST：新增操作，PUT 更新操作，PATCH 部分更新，DELETE 删除操作
+3. 使用连字符-而不是_来提高URI的可读性
+4. 在URI中使用小写字母
+5. URI版本控制（推荐）http://api.example.com/v1
+6. 正确使用状态码
+##### 注解
+1. @GetMapping
+2. @PostMapping
+3. @PutMapping
+4. method = DELETE
+5. @PathVariable：用于获取URL中的参数：一般{ }中的变量名与方法中的形参名一致(可以不加@PathVariable注解)
+6. @RequestBody POST方式进行提交
+##### 示例
+1. [优秀例子](https://hacpai.com/article/1546930788518#toc_h2_13)
+2. [Github 的 Restful HTTP API 设计分解](https://hacpai.com/article/1569208733756)
+##### 思路
+1. 新建项目 web，restrepo
+2. 配置 server:servlet:context-path: /api
+3. controller 配置版本号
+4. curd
+5. HTTP状态码 统一接口返回实体
+6. 统一异常
+##### 其他
+1. 幂等性 一次和多次请求某一个资源对于资源本身应该具有同样的结果
+2. jpa
+3. rest-api 类图
+#### token 机制防止重复提交
+为了防止重复提交，使用redis进行效验。
+##### Scheduling
+查询文章，看到了，定时，再次加上定时功能。
+
+注解
+1. @EnableScheduling
+2. @Scheduled(cron="xxx")
+定时参数存放数据库
+1. 继承SchedulingConfigurer
+2. 重写configureTasks()
+3. ScheduledTaskRegistrar增加addTriggerTask  CronTrigger
+4. corn表达式，可以直接网上查
+
+##### 幂等性
+1. pom web，test，jpa，jedis，lombok，mysql，aop，apache工具包commons-lang3
+2. 
+##### 其他
+1. redisson的使用
