@@ -7,8 +7,8 @@
 3. spring boot druid 数据库连接池 入门
 4. restful api
 5. token 机制防止重复提交
-6. 缓存 spring cache 复习
-7. 设计模式：责任链模式
+6. 设计模式：责任链模式
+7. 缓存 spring cache 复习
 ### 第二周
 1. Spring 框架中的设计模式（一）
 #### 捕获全局异常
@@ -168,6 +168,25 @@ RESTful架构应该遵循统一接口原则，统一接口包含了一组受限�
 
 ##### 幂等性
 1. pom web，test，jpa，jedis，lombok，mysql，aop，apache工具包commons-lang3
-2. 
+2. 启动类
+3. 配置类：1.redis配置，使用jedis客户端 2. 继承WebMvcConfigurationSupport，将拦截器加上
+4. 工具类：uuid生成token，redis工具类
+5. 自定义注解，如果方法加了注解就代表要验证
+6. 拦截器，其实可以使用aop进行验证的。拦截器，判断方法，里面有无token，没有拦截，有进行验证
+7. 返回实体，定义返回实体类，id，code，data
+8. 返回实体的枚举，统一管理返回值
+9. 自定义异常，处理service的异常
+10. 捕获全局异常类
 ##### 其他
 1. redisson的使用
+2. Interceptor 拦截器，预处理回调方法，后处理回调方法，整个请求处理完毕回调方法
+3. StrBuilder
+4. spring boot 启动周期
+5. HandlerMethod
+6. 常量类里面可以使用多个interface区分类别调用的时候常量实体.接口.常量名
+7. common-lang3 apach工具类，uuid就是类里面的方法
+#### idea注释模版
+我用的idea是免费的社区版，不支持spring创建项目。创建springboot时，要么maven，要么用官网的脚手架工具。
+模版是经常要用的，这里收集一下常用模版.
+1. 类，类名，描述，作者，时间，版本
+2. 方法，方法名，入参，回参，描述，作者，时间
