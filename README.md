@@ -10,7 +10,8 @@
 6. 设计模式：责任链模式
 7. 缓存 spring cache 复习
 ### 第二周
-1. Spring 框架中的设计模式（一）
+1. Swagger 文档
+2. Spring 框架中的设计模式（一）
 #### 捕获全局异常
 ##### 思路
 1. 新建一个捕获全局的类，每个方法实现捕获异常的逻辑。
@@ -190,3 +191,27 @@ RESTful架构应该遵循统一接口原则，统一接口包含了一组受限�
 模版是经常要用的，这里收集一下常用模版.
 1. 类，类名，描述，作者，时间，版本
 2. 方法，方法名，入参，回参，描述，作者，时间
+
+#### druid 多数据源
+1. 准备工作，2个数据库，每个数据各有1张表
+2. appliaction文件分别配置数据库1，数据库2的基本信息
+3. 分别编写druidconfig
+4. 扫描不同的mapper，创建不同的datasource
+5. 其他分层照常编写
+
+##### 其他
+1. ConfigurationProperties
+#### Swagger
+在实际项目中，几乎没有使用过。
+##### 基本配置
+1. 引入swagger和ui
+2. 配置config，返回docket
+##### 高级配置
+1. 控制器类 @Api （tags = "", description=""）
+2. 接口方法 @ApiOperation 注解来展开对接口的描述
+3. 实体 @ApiModel 和 @ApiModelProperty
+4. ApiInfo 文档的其他信息
+##### 接口过滤
+1. @ApiIgnore，在方法上增加
+2. apis()：这种方式我们可以通过指定包名的方式，让 Swagger 只去某些包下面扫描。
+3. paths()：这种方式可以通过筛选 API 的 url 来进行过滤。
