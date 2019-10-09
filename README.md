@@ -11,7 +11,7 @@
 7. 缓存 spring cache 复习
 ### 第二周
 1. Swagger 文档
-2. Spring 框架中的设计模式（一）
+2. Springboot 权限控制Shiro
 #### 捕获全局异常
 ##### 思路
 1. 新建一个捕获全局的类，每个方法实现捕获异常的逻辑。
@@ -215,3 +215,53 @@ RESTful架构应该遵循统一接口原则，统一接口包含了一组受限�
 1. @ApiIgnore，在方法上增加
 2. apis()：这种方式我们可以通过指定包名的方式，让 Swagger 只去某些包下面扫描。
 3. paths()：这种方式可以通过筛选 API 的 url 来进行过滤。
+
+#### Shiro
+关于权限控制这块，有Shiro和spring security，其实，每次用的时候，都需要百度一下用法，这次，通过事例，记录使用思路。
+1. 引入依赖，shiro-spring，shiro-redis
+2. 其他依赖 aop，redis-reactive
+3. 自定义Realm，继承AuthorizingRealm，实现下面2个方法
+4. doGetAuthenticationInfo 身份认证 （主要是在登录时的逻辑处理）。获取用户信息，与数据库验证
+5. doGetAuthorizationInfo：登陆认证成功后的处理 ex: 赋予角色和权限。获取用户信息，从数据库拿到角色和菜单
+4. 配置shiro
+##### 其他
+1. 响应式的redis spring-boot-starter-data-redis-reactive
+2. RedisSessionDAO shiro将session保存到redis
+3. SecurityUtils
+
+#### MyBatis-Plus
+笔者官网先来一遍
+1. schema，data 配置无效
+2. mybatisplus配置mapperscan，扫描到包（com.sun.test.mapper）
+##### 封装类
+###### DAO[Mapper CRUD 接口](https://mp.baomidou.com/guide/crud-interface.html#mapper-crud-%E6%8E%A5%E5%8F%A3)
+###### service[Service CRUD 接口](https://mp.baomidou.com/guide/crud-interface.html#service-crud-%E6%8E%A5%E5%8F%A3)
+###### 条件构造器
+##### 思路
+1. 引入pom，mp依赖mp，代码生成器单独引入
+2. 编写yml，配置数据库，mp需要加上mapper.xml的扫描地址
+3. 编写config，增加mapperscan
+4. 定义实体类
+4. dao 继承 basedao
+
+#### WebFlux
+##### Reactor
+1. Flux
+表示的是包含 0 到 N 个元素的异步序列。在该序列中可以包含三种不同类型的消息通知：正常的包含元素的消息、序列结束的消息和序列出错的消息。当消息通知产生时，订阅者中对应的方法 onNext(), onComplete()和 onError()会被调用。
+2. Mono
+表示的是包含 0 或者 1 个元素的异步序列。该序列中同样可以包含与 Flux 相同的三种类型的消息通知。
+##### spring-boot-starter-webflux
+在实际项目中，很少用到，但是为了学习这种编程的方式。就行java8的stream一样，如果熟练使用，那学习spark，flink那些算子就很简单了。
+###### hello word
+1. 引入pom依赖
+2. 编写application，与正常一样
+3. 一下2个步骤都是简要步骤，api和编程规范还需要多熟悉。如果不熟悉，那3，4这两步只是虚的。
+3. 编写Router，在router调用hanlder。RouterFunction<ServerResponse>
+4. 编写handler，返回helloworld。Mono<ServerResponse>（ServerResponse.状态.contentType,方法）
+###### Moon Flux
+1. Mono和Flux都是Publisher发布者
+2. 对于 Subscriber 和 Subcription 这两个接口 Reactor 必然也有相应的实现
+3. 反应式编程框架主要采用了观察者模式
+4. Reactive Streams 是规范，Reactor 实现了 Reactive Streams。Web Flux 以 Reactor 为基础，实现 Web 领域的反应式编程框架
+##### 其他
+1. @Builder(toBuilder = true)  UserInfo userInfo = UserInfo.builder().name("zzl").build();
