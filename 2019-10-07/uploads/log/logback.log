@@ -1,0 +1,3 @@
+2019-10-13 14:32:13.848 [main] INFO  com.sun.uploads.UploadsApplication - Starting UploadsApplication on zcmdeMacBook-Pro.local with PID 3801 (/Users/zcm/Documents/GitHub/WeeklyPlanning/2019-10-07/uploads/target/classes started by zcm in /Users/zcm/Documents/GitHub/WeeklyPlanning/2019-10-07/uploads)
+2019-10-13 14:32:13.851 [main] DEBUG com.sun.uploads.UploadsApplication - Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-10-13 14:32:13.852 [main] INFO  com.sun.uploads.UploadsApplication - No active profile set, falling back to default profiles: default
