@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,10 +17,9 @@ import java.util.Date;
  **/
 @Data
 @AllArgsConstructor
-@Slf4j
 @NoArgsConstructor
 @ToString
-public class File implements Serializable {
+public class FileModel implements Serializable {
 
     private Long id;
     private String name;
@@ -31,5 +28,11 @@ public class File implements Serializable {
     private Date uploadTime;
 
 
+    public FileModel(String name, String md5, String path, Date date) {
 
+        this.name = name;
+        this.md5 = md5;
+        this.path = path;
+        this.uploadTime = date;
+    }
 }

@@ -265,3 +265,29 @@ RESTful架构应该遵循统一接口原则，统一接口包含了一组受限�
 4. Reactive Streams 是规范，Reactor 实现了 Reactive Streams。Web Flux 以 Reactor 为基础，实现 Web 领域的反应式编程框架
 ##### 其他
 1. @Builder(toBuilder = true)  UserInfo userInfo = UserInfo.builder().name("zzl").build();
+
+#### Vue
+##### 创建项目
+1. vue create project
+2. npm install server
+##### 目录
+1. public 不更改文件
+2. src 更改文件
+3. components 零部件
+4. views 页面组建，整合零部件（templates，style，script）
+5. app.vue 首页 （div id=app）
+6. router.js 路由（引入组建，配置path）
+##### style
+1. .{padding:0,margin:0} 全局边距0
+2. margin 上下 左右
+##### script
+1. 引入 component  improt xxx from xxxx
+2. export default components { 引入xxx }
+3. templates 使用xxx
+##### 事件总线
+1. 引入Vue,输出新Vue
+##### 安装插件
+1. npm i axios -S
+#####
+1. 子与父组建通信 proper
+2. watch
