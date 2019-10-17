@@ -40,7 +40,7 @@
     props:{
       goodId:Number
     },
-    wathc:{
+    wathch:{
       goodId(){
         var _this = this;
         var url = "";
